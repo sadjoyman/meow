@@ -91,12 +91,60 @@ class Homepage extends StatelessWidget {
           // Center "Southern Odessey"
           const Center(
             child: Text(
-              "Southern h Odessey",
+              "Southern Odessey",
               style: TextStyle(
                 fontSize: 26,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
+            ),
+          ),
+
+          // Rounded Kerala box
+          Positioned(
+            top: 215,
+            left: 10,
+            right: 45,
+            child: Container(
+              height: 60,
+              width: 0,
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 165, 248, 109),
+                borderRadius: BorderRadius.circular(35), // round corners
+              ),
+                child: Stack(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(35),
+                      child: Image.asset(
+                        'assets/images/am.jpg',
+                        height: 60,
+                        width: double.infinity,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(35),
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
+                        child: Container(
+                          height: 60,
+                          width: double.infinity,
+                          color: Colors.transparent,
+                        ),
+                      ),
+                    ),
+                    const Center(
+                      child: Text(
+                        "Kerala",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
             ),
           ),
         ],
