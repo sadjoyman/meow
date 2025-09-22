@@ -1,4 +1,13 @@
 import 'package:flutter/material.dart';
+import 'kerala.dart';
+import 'kochi_page.dart';
+import 'trivandrum_page.dart';
+import 'kollam_page.dart';
+import 'kozhikode_page.dart';
+import 'alappuzha_page.dart';
+import 'thrissur_page.dart';
+import 'kannur_page.dart';
+import 'wayanad_page.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({super.key});
@@ -20,154 +29,138 @@ class Homepage extends StatelessWidget {
             fontSize: 20,
           ),
         ),
-        actions: const [
-          Icon(Icons.search, color: Color.fromARGB(255, 183, 156, 3)),
-          SizedBox(width: 20),
-        ],
       ),
       drawer: Drawer(
-        backgroundColor: Colors.white,
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(color: Color.fromARGB(255, 183, 156, 3)),
-              child: Text(
-                "Menu",
+            DrawerHeader(
+              decoration: const BoxDecoration(
+                color: Color.fromARGB(255, 183, 156, 3),
+              ),
+              child: const Text(
+                'Menu',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 24,
-                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
-            _drawerItem(
-              context: context,
-              icon: Icons.home,
-              text: "Home",
-              routeName: '/homepage',
+            ListTile(
+              leading: const Icon(Icons.home),
+              title: const Text('Home'),
+              onTap: () => Navigator.pop(context),
             ),
-            _drawerItem(
-              context: context,
-              icon: Icons.info,
-              text: "About",
-              routeName: '/about',
+            ListTile(
+              leading: const Icon(Icons.info),
+              title: const Text('About'),
+              onTap: () {},
             ),
-            _drawerItem(
-              context: context,
-              icon: Icons.contact_mail,
-              text: "Contact",
-              routeName: '/contact',
+            ListTile(
+              leading: const Icon(Icons.contact_page),
+              title: const Text('Contact'),
+              onTap: () {},
             ),
           ],
         ),
       ),
-      body: Stack(
-        children: [
-          // Background image
-          Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/images/am.jpg'),
-                fit: BoxFit.cover,
-              ),
-            ),
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/am.jpg'),
+            fit: BoxFit.cover,
           ),
-
-          // "Explore" at top-left below AppBar
-          const Positioned(
-            top: kToolbarHeight + 120,
-            left: 16,
-            child: Text(
-              "Explore",
-              style: TextStyle(
-                fontSize: 19,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),
-            ),
-          ),
-
-          // Center "Southern Odessey"
-          const Center(
-            child: Text(
-              "Southern Odessey",
-              style: TextStyle(
-                fontSize: 26,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-          ),
-
-          // Rounded Kerala box
-          Positioned(
-            top: 215,
-            left: 10,
-            right: 45,
-            child: Container(
-              height: 60,
-              width: 0,
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 165, 248, 109),
-                borderRadius: BorderRadius.circular(35), // round corners
-              ),
-                child: Stack(
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(35),
-                      child: Image.asset(
-                        'assets/images/am.jpg',
-                        height: 60,
-                        width: double.infinity,
-                        fit: BoxFit.cover,
-                      ),
+        ),
+        child: SafeArea(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 100),
+                  const Text(
+                    "Explore",
+                    style: TextStyle(
+                      fontSize: 19,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
                     ),
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(35),
-                      child: BackdropFilter(
-                        filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
-                        child: Container(
-                          height: 60,
-                          width: double.infinity,
-                          color: Colors.transparent,
+                  ),
+                  const SizedBox(height: 30),
+                  InkWell(
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Kerala()),
+                    ),
+                    child: Container(
+                      height: 60,
+                      decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 165, 248, 109).withOpacity(0.8),
+                        borderRadius: BorderRadius.circular(35),
+                      ),
+                      child: const Center(
+                        child: Text(
+                          "Kerala",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),
-                    const Center(
-                      child: Text(
-                        "Kerala",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                        ),
-                      ),
+                  ),
+                  const SizedBox(height: 30),
+                  SizedBox(
+                    height: 70,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        _districtBubble(context, "Kochi", Colors.orange, const KochiPage()),
+                        _districtBubble(context, "Trivandrum", Colors.blue, const TrivandrumPage()),
+                        _districtBubble(context, "Kollam", Colors.green, const KollamPage()),
+                        _districtBubble(context, "Kozhikode", Colors.purple, const KozhikodePage()),
+                        _districtBubble(context, "Alappuzha", Colors.red, const AlappuzhaPage()),
+                        _districtBubble(context, "Thrissur", Colors.teal, const ThrissurPage()),
+                        _districtBubble(context, "Kannur", Colors.brown, const KannurPage()),
+                        _districtBubble(context, "Wayanad", Colors.indigo, const WayanadPage()),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
+              ),
             ),
           ),
-        ],
+        ),
       ),
     );
   }
 
-  // Drawer item helper function
-  Widget _drawerItem({
-    required BuildContext context,
-    required IconData icon,
-    required String text,
-    required String routeName,
-  }) {
-    return ListTile(
-      leading: Icon(icon, color: const Color.fromARGB(255, 183, 156, 3)),
-      title: Text(text),
-      onTap: () {
-        Navigator.pop(context); // Close drawer
-        if (ModalRoute.of(context)?.settings.name != routeName) {
-          Navigator.pushReplacementNamed(context, routeName);
-        }
-      },
+  Widget _districtBubble(BuildContext context, String name, Color color, Widget page) {
+    return InkWell(
+      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => page)),
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 8),
+        child: Column(
+          children: [
+            CircleAvatar(
+              radius: 25,
+              backgroundColor: color,
+              child: Text(
+                name.substring(0, 2),
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
+              ),
+            ),
+            const SizedBox(height: 4),
+            Text(name, style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
+          ],
+        ),
+      ),
     );
   }
 }

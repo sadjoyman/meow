@@ -1,4 +1,5 @@
 // Demo Flutter App with Explanations
+import 'package:ammbaddi/pages/kerala.dart';
 import 'package:flutter/material.dart';
 import 'package:ammbaddi/pages/homepage.dart';
 import 'package:ammbaddi/pages/aboutpage.dart';
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
         '/homepage': (context) => const Homepage(),
         '/about': (context) => const AboutPage(),
         '/contact': (context) => const ContactPage(),
+        '/kerala':(context) => const Kerala(),
       },
     );
   }
