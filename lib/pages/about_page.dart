@@ -9,7 +9,7 @@ class AboutPage extends StatelessWidget {
       appBar: AppBar(title: const Text("About")),
       body: const Center(
         child: Text(
-          "Welcome to Southern Odyssey!\nDiscover the beauty of South India.",
+          "FUCK to Southern Odyssey!\nDiscover the beauty of South India.",
           style: TextStyle(fontSize: 18),
           textAlign: TextAlign.center,
         ),
